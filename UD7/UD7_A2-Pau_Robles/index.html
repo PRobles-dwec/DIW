@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UD7 A2 - Pau Robles</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./js/script.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div id="app">
+        <header>            
+            <div class="buttons">
+                <h1><a href="./index.html">Roblus </a>  </h1>
+                <button @click="returnRegister"> Register </button>
+                <button @click="returnLogin"> Login </button>
+            </div>
+            <div id="HelloUser"></div>
+        </header>
+        
+        <fruit v-for="fruit in fruits" class="article" v-bind:fruit="fruit" v-bind:show_articles="show_articles" v-show="fruit.isActive || fruit.hasStock"></fruit>
+
+        <div class="form-group" v-if="show_register">
+            <form>
+                <h1> REGISTER </h1> 
+                <input type="email" placeholder="Email" v-model="email">             
+                <div id="errorEmail"></div>
+                <input type="text" placeholder="Nickname" v-model="nickname">
+                <div id="errorNickname"></div>
+                <input type="password" placeholder="Password" v-model="password">
+                <div id="errorPassword"></div>
+                <input type="password" placeholder="Repeat password" v-model="repeatPassword">            
+                <div id="errorRepeatPassword"></div>
+                <button @click="registerUser"> Register </button>
+            </form>                               
+        </div>
+        <div class="form-group" v-show="show_login">
+            <form>
+                <h1> LOGIN </h1>        
+                <input type="email" placeholder="Email" v-model="email">       
+                <input type="password" placeholder="Password" v-model="password">                      
+                <div id="error"></div>
+                <button @click="loginUser"> Login </button>
+            </form>            
+        </div>           
+    </div>
+    <script type="module">
+        import Fruit from "./js/Fruit.js"
+        const { createApp } = Vue;        
+        var app = createApp({
+            data() {
+                return {
+                    fruits: fruits,      
+                    show_login: false,
+                    show_register: false,  
+                    show_articles: true,    
+                    email: "",
+                    nickname: "",
+                    password: "",  
+                }
+            },            
+            components: {
+                Fruit,
+            },      
+            methods: {
+                returnLogin: function() {
+                    this.show_login = true;
+                    this.show_register = false;
+                    this.show_articles = false;
+                    this.email = "";
+                    this.nickname = "";
+                    this.password = "";
+                },
+                returnRegister: function() {                    
+                    this.show_register = true;
+                    this.show_login = false;
+                    this.show_articles = false;
+                },   
+                registerUser: function(){ 
+                    
+                    var errorEmail = document.getElementById("errorEmail");                                                                                                 
+                    var errorNickname = document.getElementById("errorNickname");                                                                                                 
+                    var errorPassword = document.getElementById("errorPassword");
+                    var errorRepeatPassword = document.getElementById("errorRepeatPassword");                    
+                    var HelloUser = document.getElementById("HelloUser");
+                    
+                    if(this.email == "") {
+                        errorEmail.innerHTML = "The email is empty";
+                    }
+                    else{
+                        localStorage.setItem("email", this.email);
+                    }
+
+                    if(this.nickname == ""){
+                        errorNickname.innerHTML = "The nickname is empty";
+                    } else{
+                        localStorage.setItem("nickname", this.nickname);
+                    }
+
+                    if(this.password == ""){
+                        errorPassword.innerHTML = "The password is empty";
+                    } else{
+                        localStorage.setItem("password", this.password);
+                    }
+                    if(this.password != this.repeatPassword) {
+                        errorRepeatPassword.innerHTML = "The password is incorrect. Try again.";
+                    } else {
+                        localStorage.setItem("password", this.password);
+                    }
+                    event.preventDefault();
+                },
+                loginUser: function() {
+                    HelloUser.innerHTML = "Hola " +  this.email;
+                }               
+            }                       
+        }).mount("#app");        
+    </script>
+</body>
+</html>

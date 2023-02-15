@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UD7_A1-Pau-Robles</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./js/script.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header>
+        <h1> GreenLife </h1>
+    </header>
+    <div id="app">
+        <article v-for="fruit in fruits">
+            <div v-if="fruit.isActive || fruit.hasStock" id="fruit.index" class="products">
+                <h1>{{fruit.name}}</h1>
+                <img v-bind:src="fruit.picture"/>
+                <h2>{{fruit.price}}€ </h2>
+                <ul>
+                    <h1>Tags: </h1>
+                    <li v-for="tag in fruit.tags"> {{tag}} </li>  
+                </ul>
+                                    
+                <p> Stock: {{fruit.stock}} </p>                       
+            </div>                 
+        </article>               
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        console.log(typeof(isActive));
+        var app = createApp({
+            data() {
+                return {
+                    fruits: fruits,
+                    
+                }
+            }
+        }).mount("#app");
+    </script>
+</body>
+</html>

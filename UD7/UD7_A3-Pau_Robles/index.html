@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UD7 A3 - Pau Robles</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>    
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <div id="app">
+        <form>
+            <h1>Enter an integer: </h1>
+            <input type="number" v-model="number" id="numInt">
+            <button @click="addNumber">Submit</button>    
+            <div id="errorMessage"> </div>        
+        </form>   
+        <Number v-bind:number="number" v-on:click-number="clickNumber"></Number>        
+    </div>
+    <script type="module">
+        import Number from "./js/Number.js"       
+        
+        const { createApp } = Vue;       
+
+        var app = createApp({
+            data() {
+                return {
+                   number: null,
+                   show_number: false,
+                   arrayNumbers: [],                   
+                }
+            },
+            components: {                                                             
+                Number,
+            },
+            methods: {
+                clickNumber: function(e) {
+                    //e.preventDefault();                    
+                    //var errorMessage = document.getElementById("errorMessage");
+                    console.log(this.arrayNumbers.push(this.number));
+                                                        
+                },
+                addNumber: function() {
+                    console.log("Hola");
+                }
+            }
+
+        }).mount("#app");        
+    </script>    
+</body>
+</html>

@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header{
+    text-align: center;
+    background-color: #C9F299;
+    top: 0;
+    padding: 6px;
+    width: 100%;
+}
+body {
+    background-color: #256D1B;
+    width: 100%;
+}
+article{
+    text-align: center;
+    margin-top: 20px;
+    width: 30%;
+    background-color: #C9F299;
+    display: inline-block;
+    height: 30%;
+    border-radius: 15px;
+    margin-left: 15px;
+}
+div {
+    padding: 15px;
+}
+img{
+        width: 60%;
+        height: 250px;        
+}
+ul li {
+    list-style: none;
+}
