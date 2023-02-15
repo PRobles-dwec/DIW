@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example 2</title>
+  <style type="text/css">
+    .disallowed {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>Example 2</h1>
+    <a href="https://jquery.com/">jQuery</a>
+    <p id="pfirst">First content</p>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready( function () {
+      $("a").mouseover(function (event){
+        $("#pfirst").addClass("disallowed");
+      });
+      $("a").mouseout(function (event){
+        $("#pfirst").removeClass("disallowed");
+      });
+    });    
+  </script>
+</body>
+</html>

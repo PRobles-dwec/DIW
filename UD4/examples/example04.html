@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example 4</title>
+</head>
+<body>
+  <div id="texts">
+    <h1>Example 4</h1>
+    <p id="first">First paragraph</p>
+    <p>Second paragraph</p>
+    <h3>Title</h3>
+    <p class="important">Third paragraph</p>
+    <input value="Input text"/><br/>
+    <a href="https://api.jquery.com/">Link</a><br/>
+    <button id="change">Change</button>
+</div>
+
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(start);
+    function start(){
+        //EXTRAER INFORMACIÓN DE UN ELEMENTO (GET): paréntesis sin parámetros
+        console.log($("p#first").html()); //Extraigo código html
+        console.log($("p#first").text()); //Extraigo texto
+        console.log($("input").val()); //Extraigo el valor de un input
+        
+        //MODIFICAR/AÑADIR INFORMACIÓN DE UN ELEMENTO (SET): valor entre paréntesis
+        $("p#first").html("<b>New value paragraph 1</b>"); //Introducir código html
+        $("p#first").text("New value paragraph 1"); //Introducir texto
+        $("input").val("New input value"); //Introducir un valor en un input
+        
+        //EXTRAER INFORMACIÓN DE UN ATRIBUTO (GET)
+        console.log($("a").attr("href"));
+        
+        //MODIFICAR/AÑADIR INFORMACIÓN DE UN ATRIBUTO (SET)
+        //Un solo atributo
+        /*$("a").attr("href","todoslosenlaces.html");
+        //Varios atributos
+        $("a").attr({
+            "title":"Todos los enlaces",
+            "href":"todoslosenlaces2.html"
+        });*/
+        
+        /*FUNCIONES CALLBACK: los métodos text, html, val y attr tienen una función callback con dos 
+        parámetros: el índice del elemento actual en la lista de elementos seleccionados, y el valor orginal
+        */
+        $("button#change").click(function(){
+            $("a").attr("href",function(i,original){
+                return original + "/nuevo";
+            }) 
+        });
+    }    
+  </script>
+</body>
+</html>

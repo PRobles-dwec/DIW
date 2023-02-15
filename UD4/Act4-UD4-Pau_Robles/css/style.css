@@ -1,0 +1,62 @@
+@media (min-width: 400px),(max-width: 1600px) {
+    .blue{
+        background-color: #1664A6;
+        width: 100px; 
+        height: 100px; 
+        padding: 0.5em; 
+        float: left; 
+        margin: 10px 10px 10px 0; 
+        border: 1px solid black;
+    }
+    
+    .orange { 
+        background-color: #F8724C;
+        width: 100px; 
+        height: 100px; 
+        padding: 0.5em; 
+        float: left; 
+        margin: 10px 10px 10px 0; 
+        border: 1px solid black;
+    }
+    .container-blue { 
+        background-color:cyan;
+        width: 300px; 
+        height: 700px; 
+        padding: 0.5em; 
+        margin-top: 10px; 
+        margin-right: 200px;
+        position: absolute;
+        right: 200px;
+    }
+    
+    .container-orange { 
+        background-color: lightsalmon;
+        width: 300px; 
+        height: 700px; 
+        padding: 0.5em; 
+        margin-top: 10px; 
+        position: absolute;
+        right: 50px;
+    }
+    header{
+        background-color: deepskyblue;
+    }
+    .close{
+        position: absolute;
+        right: 5px;
+    }
+    
+    #dialog{
+        border: 1px solid black;
+    }
+    
+    .minimize{
+        position: absolute;
+        right: 50px;
+    }
+    
+    .maximize{
+        position: absolute;
+        right: 50px;
+    }
+}

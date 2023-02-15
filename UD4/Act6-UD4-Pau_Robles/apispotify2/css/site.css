@@ -1,0 +1,40 @@
+body{
+  text-align: center;
+  background-color: #D0D6B3;
+}
+#results{
+  margin-top: 2em;
+  border-radius: 10px;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+form label{
+  display: inline-block;
+  width: 30%;
+}
+h1{
+  color: black;
+}
+
+header{
+  background-color: #65743A;
+}
+#results{
+  background-color: #AAAE7F;
+}
+button{
+  background-color: #8ACB88;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+input{
+  font-size: 20px;
+  border-radius: 10px;
+}
+button{
+  cursor: pointer;
+}
+#myImage{
+  width: 300px;
+}

@@ -1,0 +1,16 @@
+body {
+    text-align: center;
+    background-color: #DBCDC6;
+}
+
+textarea{
+    background-color: #C7ADA0;
+    margin: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}

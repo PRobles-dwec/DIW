@@ -1,0 +1,21 @@
+body {
+    background-color: #FFC15E;
+}
+fieldset {
+    height: 200px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #F7934C;
+    text-align: center;
+}
+.Error{
+    background-color: red;
+    width: 100%;
+    font-size: 20px;
+}
+.Info{
+    background-color: greenyellow;
+    width: 100%;
+    font-size: 20px;
+}

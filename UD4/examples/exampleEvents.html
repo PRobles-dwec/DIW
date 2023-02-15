@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example Effects</title>
+  <style>
+    #panel {
+        background-color: #e5eecc;
+        border: solid 1px #c3c3c3;
+    }
+  </style>
+</head>
+<body>
+    <button id="quitarEvento">Quitar evento</button>
+    <button id="cuenta1">Cuenta 1</button>
+    <button id="cuenta2">Cuenta 2</button>
+    <p>Parrafo 1</p>
+    <p>Parrafo 2</p>
+    <p>Parrafo 3</p>
+    <p>Parrafo 4</p>
+    <p>Contador 1: <span id="contador1">0</span></p>
+    <p>Contador 2: <span id="contador2">0</span></p>
+    
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(inicio);
+
+        function inicio() {
+            //Llamada a una función sin parámetros
+            $("p").on("click", mensaje);
+
+            function mensaje() {
+                console.log("Párrafo pulsado");
+            }
+            
+            //Llamada a una función con parámetros
+            $("p").on("click", {
+                nombre: "Ada",
+                apellido: "Lovelace"
+            }, mensajeParametros);
+
+            function mensajeParametros(e) {
+                console.log(e.data.nombre + " " +
+                    e.data.apellido);
+            }
+            
+            //Ejecución de una función anónima
+            $("p").on("click", function () {
+                console.log($(this).text());
+            });
+            
+            //.one: el evento se ejecuta una única vez PARA CADA ELEMENTO de la selección
+            $("p").one("click", function () {
+                console.log("El párrafo " + $(this).text() + " ha sido pulsado por primera vez");
+            });
+            
+            //Varios eventos asociados al mismo selector
+            $("p").on({
+                mouseenter: function () {
+                    $(this).css("background-color", "lightgray");
+                },
+                mouseleave: function () {
+                    $(this).css("background-color", "lightblue");
+                },
+                click: function () {
+                    $(this).css("background-color", "yellow");
+                }
+            });
+
+            //.off: eliminamos el manejador de eventos.
+            $("#quitarEvento").click(quitarEvento);
+
+            function quitarEvento() {
+                $("p").off();
+            }
+            //.trigger: simula la ejecución de un evento(click, mouseover)
+            //.triggerHandler: tiene diferencias respecto a trigger(ver API)
+            $("#cuenta1").click(function () {
+                $("#contador1").text(parseInt($("#contador1").text()) + 1);
+            });
+            $("#cuenta2").click(function () {
+                $("#contador2").text(parseInt($("#contador2").text()) + 1);
+                $("#cuenta1").trigger("click");
+            });
+
+            //Otras: preventDefault()...
+        }
+    </script>
+   
+</body>
+</html>

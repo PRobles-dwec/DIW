@@ -1,0 +1,68 @@
+@font-face {
+    font-family: "Oswald";
+    src: url("../Oswald/static/Oswald-Bold.ttf");
+}
+
+body{
+    background-image: url("https://illescas.es/wp-content/uploads/2018/02/Campo-de-f%C3%BAtbol-7-El-Parque.jpg");
+    background-color: green;
+    background-size: cover;
+    height: 100%;
+    margin: 0;
+    padding: auto;
+}
+
+label{
+    font-family: "Oswald";
+}
+
+p{
+    font-family: "Oswald";
+}
+
+img:hover{
+    width: 400px;
+    height: 350px;
+    opacity: 0.8;
+}
+
+input[type="text"]{
+    background-color: aquamarine;
+}
+
+input[type="password"]{
+    background-color:aquamarine;
+}
+
+form{
+    text-align: center;
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+fieldset{
+    background-color: red;
+}
+
+input[type="password"]::placeholder{
+    color: black;
+}
+
+input[type="text"]::placeholder{
+    color: black;
+}
+
+a img{
+    display: block;
+}
+div img:target{
+    display: block;
+}
+div img{
+    display: none;
+}
+a img:has(){
+    display: block;
+}

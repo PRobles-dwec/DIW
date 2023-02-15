@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Act.4 UD.3 - Pau Robles</title>
+    <link rel="stylesheet" href="./css/style.css"> 
+    <link type="image/x-icon" rel="icon" href="./img/windows.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/md5.js"></script>
+</head>
+<body>
+    <header>
+        <h1> Welcome to this web page </h1>
+    </header>
+    <form id="form">        
+        <legend> User registration </legend>
+        <label for="name"> Name: </label> 
+        <input type="text" id="name" name="name" placeholder="Write your name"> <br>
+
+        <label for="password"> Password: </label> 
+        <input type="password" id="password" name="password" placeholder="Write a password"> <br>
+
+        <label for="image"> Choose an image: </label>
+        <input id="image" type="file" name="image">
+        <div id="dummy">
+        </div>
+        <div>
+            <textarea style="width:100%;height:100px;" id="txt"></textarea>
+        </div>                         
+        <input type="submit" value="Create data">
+                                              
+    </form>
+    <button onclick="readOne()">Show info</button>
+    <button onclick="editUser()"> Edit </button> 
+    <button onclick="deleteUser()"> Delete </button> 
+    <script src="./js/script.js" defer></script>    
+</body>
+</html>

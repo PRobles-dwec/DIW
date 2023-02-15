@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example 3</title>
+</head>
+<body>
+  <div>
+    <h1>Example 3</h1>
+    <p id="first">First paragraph</p>
+    <br/>
+    <p>Second paragraph</p>
+    <br/>
+    <p class="important">Third paragraph</p>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(inicio);
+    function inicio(){
+      /* SELECTORS 
+      $("p") //Selecionar elementos por su etiqueta
+      $("#first") //Seleccionar elementos por su id
+      $(".important") //Seleccionar elementos por su clase
+      $("p[name=first]") //Seleccionar elementos por su atributo
+      $("a[target='_blank']") //Seleccionar elementos por pseudoselectores */
+      
+      //GUARDAR UNA SELECCIÓN EN UNA VARIABLE
+      var parrafos = $("p"); //Guarda los elementos EN EL MOMENTO
+      
+      /* EVENTS
+      Texto: html, text, val.
+      Ratón click, dblclick, mouseover, mouseout, mouseenter, mouseleave.
+      Teclado: keypress, keydown, keyup.
+      Formularios: submit, change, focus, blur.
+      Document/Window: load, resize, scroll, unload */
+      
+      $("p").mouseover(function(){
+          //$("p").css("color","red");
+          $(this).css("color","red");
+      });
+      $("p").mouseout(function(){
+          //$("p").css("color","black");
+          $(this).css("color","black");
+      });
+      
+      $("p#first").click(function(){
+          alert("You have clicked the first paragraph") 
+      });
+      $("p.important").click(function(){
+          $(this).hide();
+      })
+    }
+  </script>
+</body>
+</html>

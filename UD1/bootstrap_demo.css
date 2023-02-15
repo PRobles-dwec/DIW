@@ -1,0 +1,21 @@
+.container, .container-fluid{
+    background-color: mediumseagreen;
+    color: white;
+    height: 100px;
+}
+
+.container-fluid{
+    background-color: blue;
+}
+
+.black{
+    background-color: black;
+    height: 100px;
+}
+
+
+.yellow{
+    background-color: yellow;
+    height: 100px;
+    color: black;
+}

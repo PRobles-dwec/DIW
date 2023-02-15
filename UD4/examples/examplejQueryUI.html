@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery UI</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
+  <style>
+    * {
+      font: normal 12px arial verdana;
+    }
+    form {
+      border: 3px solid rgb(153,153,153);
+      width: 300px;
+      padding: 6px;
+    }
+  </style>
+</head>
+<body>
+  <form id="loginSample">
+    <p>
+      <label for="username">Username:</label>
+      <input id="username" type="text">
+    </p>
+    <p>
+      <label for="password">Password:</label>
+      <input id="password" type="password">
+    </p>
+    <p>
+      <input type="submit" value="Login">
+    </p>
+  </form>
+  <p>
+    <input type="button" value="Bounce" id="bounce">
+    <input type="button" value="Highlight" id="highlight">
+    <input type="button" value="Pulsate" id="pulsate">
+    <input type="button" value="Shake" id="shake">
+  </p>
+
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+  
+  <script>
+    $(document).ready( function () {
+      $("#bounce").click(function(){
+        console.log("bounce");
+        $("#loginSample").effect("bounce");
+      });
+
+      $("#highlight").click(function(){
+        $("#loginSample").effect("highlight");
+      });
+
+      $("#pulsate").click(function(){
+        $("#loginSample").effect("pulsate");
+      });
+
+      $("#shake").click(function(){
+        $("#loginSample").effect("shake");
+      });
+    });
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    background-color: black;
+    width: 100%;
+}
+
+header{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    text-align: center;
+    height: 15%;
+    background-color:black;
+}
+
+
+footer{
+    width: 100%;
+    position: fixed;
+    text-align: center;
+    bottom: 0; 
+    background-color: black; 
+}
+
+aside{
+    position: fixed;
+    top: 18%;
+    width: 16%;
+    height: 60%;
+    bottom: 50px;
+    left: 0;
+    background-color: black;
+}
+
+button{
+    width: 40px; 
+}
+
+#buscador {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+header img{
+    margin-top: 20px;
+}
+
+ul li {
+    list-style-type: none;
+    color: white;
+}
+ul li a{
+    list-style-type: none;
+    color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+main {
+    position: absolute;
+    height: auto;
+    width: 84%;
+    top: 15%;
+    right: 0;
+    bottom: 80px;
+    left: 16%;
+    background-color:black;
+}
+
+button:hover{
+    width: 50px;
+}
+
+a:link{
+    text-decoration: none;
+    color: white;
+}
+
+#menu ul li{
+    display: inline;
+}
+
+#info{
+    margin-bottom: 10px;
+}
+
+main h3{
+    position: absolute;
+    top: 5%;
+    color: white;
+    left: 3%;
+}
+
+section{
+    display: inline-block;
+    position: relative;    
+    top: 10%;
+    width: 23%;
+    height: 70%;
+    left: 2%;
+    border: 2px solid white;
+    color: white;
+}
+
+section img{
+    position: relative;
+    left: 100px;
+    top: 100px;
+}

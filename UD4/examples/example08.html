@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example 8</title>
+  <style>
+    .missatge {
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 1.2em;
+    }
+
+    .error {
+      background-color: #f2dede;
+      color: #d9534f;
+      border: 1px solid #d9534f;
+    }
+
+    .exit {
+      background-color: #dff0d8;
+      color: #5cb85c;
+      border: 1px solid #5cb85c;
+    }
+
+    .info {
+      background-color: #d9edf7;
+      color: #5bc0de;
+      border: 1px solid #5bc0de;
+    }
+  </style>
+</head>
+<body>
+  <div id="avisos"></div>
+  <label>Introdueix un nombre:
+  <input type="text" id="entrada"/>
+  </label>
+  <button id="validar">Validar</button>
+  <button id="netejar">Netejar</button>
+
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function() {
+      var $avisos = $('#avisos'),
+        $entrada = $('#entrada'),
+        $validar = $('#validar'),
+        $netejar = $('#netejar');
+
+      $validar.on('click', function(e) {
+        esborrarAvisos();
+
+        if ($.isNumeric($entrada.val())) {
+          afegirAvis('exit', 'Has introduït un nombre!');
+        } else {
+          afegirAvis('error', "S'ha d'introduir un nombre");
+        }
+
+        afegirAvis('info', 'El text introduït ha estat: ' + $entrada.val());
+      });
+
+      $netejar.on('click', function(e) {
+        esborrarAvisos();
+      });
+
+      function afegirAvis(tipus, missatge) {
+        var definicioNode = '<p class="missatge ' + tipus + '"><b>' + tipus.toUpperCase() + ':</b> ' + missatge + '</p>';
+
+        $avisos.append(definicioNode);
+      }
+
+      function esborrarAvisos() {
+        $avisos.find('p').remove();
+      }
+
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+/* ---- Basic styles ---------------------------------------------------- */
+body {
+  background-color: #fcf7e7 !important;
+  font-family: Arial, sans-serif;
+}
+li a{
+  text-decoration: none;
+  color: #000000;
+  font-family: Arial, sans-serif;
+}
+p {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: black;
+}
+h1, h2, h3, h4, h5 {
+  font-family: Arial, sans-serif;
+}
+h1 {
+  font-size: 20px;
+}
+h2 {
+  font-size:18px;
+}
+
+main h2 a:hover{
+  color: #54A09A;
+}
+main a:hover{
+  color: #54A09A;
+}
+/* ---- Layout ------------------------------------------------------------- */
+main aside {
+  background: #54A09A;
+  font-family: Arial, sans-serif;
+  border: 2px solid #54A09A;
+}
+footer {
+  background: #80aca9;
+  font-family: Arial, sans-serif;
+}
+/* ---- Header ----------------------------------------------------------- */
+header .logo a {
+  color: black;
+}
+/* ---- Menu --------------------------------------------------------------- */
+nav ul {
+  list-style:none;
+}
+nav a {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+}
+nav a:hover {
+  text-decoration: none;
+  color: #54A09A;
+}
+/* ---- Contents --------------------------------------------------------- */
+main article h2{
+  color: black;
+  font-family: Arial, sans-serif;
+}
+main article{
+  background-color: #AFD5D2;
+}
+main  a { color:#000000; }
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 100,
+  'GRAD' 200,
+  'opsz' 40
+}
+main aside h3 {
+  color: black;
+}
+main aside ul {
+  list-style: none; 
+}
+main aside li a {
+  text-decoration: none;
+}
+main aside ul li a:hover {
+  color: #AFD5D2;
+}
+main aside li.selected a {
+  font-weight: bold;
+}

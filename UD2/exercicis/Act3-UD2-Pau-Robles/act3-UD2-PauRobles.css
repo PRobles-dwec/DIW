@@ -1,0 +1,253 @@
+@media (min-width: 400px) and (max-width:1400px){
+    @font-face {
+        font-family: "Oswald";
+        src: url("../Oswald/static/Oswald-Bold.ttf");
+    }
+    
+    body{
+        background-image: url("https://wallpapercave.com/wp/wp8255680.jpg");
+        background-size: cover;     
+    }
+    
+    button:hover{
+        background-color: transparent;
+        transition: 2s ease;
+        transform: scaleY(1.5);
+        transform: scaleX(1.1);
+        animation: 3s linear;
+    }
+    
+    img:hover{
+        width: 50px;
+        height: 50px;    
+    }
+    
+    #img{
+        margin: 5px;
+        transition: width 2s, height 4s;
+    }
+    
+    label{
+        font-family: "Oswald";
+        color: black;    
+        font-weight: bold;
+    }
+    
+    .football {
+        background: url(http://upload.wikimedia.org/wikipedia/en/e/ec/Soccer_ball.svg);
+        background-size: 50px 50px;
+        height: 50px;
+        width: 50px;
+        position: relative;
+        animation: roll 4.5s infinite;
+        margin: 15px;
+        animation-direction: alternate;
+      }
+      
+      @-moz-keyframes roll {  
+        0% {left:0px; -webkit-transform: rotate(-360deg);}
+        25% {left:240px; -webkit-transform: rotate(360deg);}
+        50% {left:400px; -webkit-transform: rotate(-360deg);}
+      }
+      @-webkit-keyframes roll { 
+        0% {left:0px; -webkit-transform: rotate(-360deg);}
+        25% {left:240px; -webkit-transform: rotate(360deg);}
+        50% {left:400px; -webkit-transform: rotate(-360deg);}
+      }
+      
+      @keyframes roll { 
+        0% {left:0%; -webkit-transform: rotate(-360deg);}
+        25% {left:2%; -webkit-transform: rotate(360deg);}
+        50% {left:5%; -webkit-transform: rotate(-360deg);}
+      }
+    
+    p{
+        font-family: "Oswald";
+    }
+    
+    input[type="text"]{
+        background-color: white;
+        box-shadow: 2px 2px;
+        margin: 5px;    
+    }
+    
+    input[type="text"]:hover{
+        background-color: white;
+        width: 200px;
+        transition: 2s ease-out;
+    }
+    
+    input[type="password"]{
+        background-color:white;
+        box-shadow: 2px 2px;
+        margin: 5px;
+    }
+    
+    input[type="password"]:hover{
+        background-color: white;
+        width: 300px;
+        transition: 2s ease-out;
+    }
+    
+    legend{
+        font-weight: bold;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    
+    form{
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        height: 200px;
+        width: 25%;
+        background-image: linear-gradient(#B06AB3, #4568DC);    
+        position: fixed;
+        top: 10%;
+        left: 25%;
+        padding: 10px;
+    }
+    
+    input[type="password"]::placeholder{
+        color: black;
+    }
+    
+    input[type="text"]::placeholder{
+        color: black;
+    }
+    
+    button{
+        box-shadow: 2px 2px;  
+        margin: 5px;  
+        
+    }
+   #img{
+        width: 100px;
+        height: 100px;
+   } 
+}
+
+@font-face {
+    font-family: "Oswald";
+    src: url("../Oswald/static/Oswald-Bold.ttf");
+}
+
+body{
+    background-image: url("https://wallpapercave.com/wp/wp8255680.jpg");
+    background-size: cover; 
+}
+
+button:hover{
+    background-color: transparent;
+    transition: 2s ease;
+    transform: scaleY(1.5);
+    transform: scaleX(1.1);
+    animation: 3s linear;
+}
+
+img:hover{
+    width: 300px;
+    height: 300px;    
+}
+
+#img{
+    margin: 5px;
+    transition: width 2s, height 4s;
+}
+
+label{
+    font-family: "Oswald";
+    color: black;    
+    font-weight: bold;
+}
+
+.football {
+    background: url(http://upload.wikimedia.org/wikipedia/en/e/ec/Soccer_ball.svg);
+    background-size: 50px 50px;
+    height: 50px;
+    width: 50px;
+    position: relative;
+    animation: roll 4.5s infinite;
+    margin-top: 10px;
+    animation-direction: alternate;
+}
+  
+  @-moz-keyframes roll {  
+    0% {left:0px; -webkit-transform: rotate(-360deg);}
+    50% {left:500px; -webkit-transform: rotate(360deg);}
+    100% {left:1000px; -webkit-transform: rotate(-360deg);}
+  }
+  @-webkit-keyframes roll { 
+    0% {left:0px; -webkit-transform: rotate(-360deg);}
+    50% {left:500px; -webkit-transform: rotate(360deg);}
+    100% {left:1000px; -webkit-transform: rotate(-360deg);}
+  }
+  
+  @keyframes roll { 
+    0% {left:0%; -webkit-transform: rotate(-360deg);}
+    25% {left:25%; -webkit-transform: rotate(360deg);}
+    50% {left:50%; -webkit-transform: rotate(-360deg);}
+    75% {left:75%; -webkit-transform: rotate(360deg);}
+    100% {left:97%; -webkit-transform: rotate(-360deg);}
+  }
+
+p{
+    font-family: "Oswald";
+}
+
+input[type="text"]{
+    background-color: white;
+    box-shadow: 2px 2px;
+    margin: 5px;    
+}
+
+input[type="text"]:hover{
+    background-color: white;
+    width: 200px;
+    transition: 2s ease-out;
+}
+
+input[type="password"]{
+    background-color:white;
+    box-shadow: 2px 2px;
+    margin: 5px;
+}
+
+input[type="password"]:hover{
+    background-color: white;
+    width: 300px;
+    transition: 2s ease-out;
+}
+
+legend{
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+form{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    height: 500px;
+    width: 50%;
+    background-image: linear-gradient(#B06AB3, #4568DC);    
+    position: fixed;
+    top: 10%;
+    left: 25%;
+    padding: 10px;
+}
+
+input[type="password"]::placeholder{
+    color: black;
+}
+
+input[type="text"]::placeholder{
+    color: black;
+}
+
+button{
+    box-shadow: 2px 2px;  
+    margin: 5px;  
+    
+}

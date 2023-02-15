@@ -1,0 +1,7 @@
+nav {
+  background-color: #A47F60;
+  width: 100%;
+}
+nav a:hover {
+  background-color: #6DD3CE;
+}

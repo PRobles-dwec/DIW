@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example Advanced Selectors</title>
+  <style type="text/css">
+    .horizontal {
+      float: left;
+      margin: 9px;
+      list-style: none;
+    }
+    .sublevel {
+      background-color: rgb(248, 165, 135);
+    }
+  </style>
+</head>
+<body>
+  <ul id="selected-media">
+    <li>Series
+      <ul>
+        <li><a href="/strangerthings/">Stranger things</a></li>
+        <li>The walking dead</li>
+        <li>Breaking bad</li>
+        <li>Game of thrones</li>
+        <li>Peaky blinders</li>
+      </ul>
+    </li>
+    <li>Films
+      <ul>
+        <li><a href="/avatar/">Avatar</a></li>
+        <li>Interstellar</li>
+        <li>The green mile</li>
+        <li>The Godfather</li>
+      </ul>
+    </li>
+    <li>Books
+      <ul>
+        <li>The Lord of the Rings (<a href="mailto:jrr@tolkien.co.uk">email</a>)</li>
+          <ul>
+            <li>Part I</li>
+            <li>Part II</li>
+          </ul>
+        <li><a href="https://harrypottershop.co.uk/">Harry Potter</a></li>
+        <li>The Hunger Games</li>
+      </ul>
+    </li>
+  </ul>
+
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+  <script>
+    $(document).ready( function () {
+      $("#selected-media > li").addClass("horizontal");
+      $("#selected-media li:not(.horizontal)").addClass("sublevel"); 
+      //console.log($('a[href^="https://"]'));
+    });    
+  </script>
+
+</body>
+</html>
