@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #1B1725;
+    width: 100%;
+}
+header{
+    background-color: rgba( 255, 255, 255, 0.25 );  
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    width: 100%;
+    height: 90px;     
+    border: 1px solid rgba( 255, 255, 255, 0.18 ); 
+}
+header button {
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+.article{
+    text-align: center;
+    margin-top: 20px;
+    width: 30%;
+    background-color: #3D405B;
+    display: inline-block;
+    height: 30%;
+    border-radius: 15px;
+    margin-left: 15px;
+    color: white;
+}
+.article h1{
+    display: block;
+}
+img {
+    width: 72%;
+    height: 12em;
+    object-fit: cover;   
+}
+h1, button {
+    display: inline-block;
+    margin-top: 15px;
+    color: white;
+}
+button {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 20px;   
+    background-color: #5C80BC;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border-radius: 10px;
+
+}
+form h1{
+    display: block;
+}
+form input {
+    margin: 5px;
+    background-color: rgba( 255, 255, 255, 0.25 );  
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border: 1px solid rgba( 255, 255, 255, 0.18 ); 
+    font-size: 20px;  
+     
+}
+input::placeholder {
+    color: #000000; 
+}
+form button {
+    text-align: center;
+}
+form {
+    text-align: center;  
+    background-color: rgba( 255, 255, 255, 0.25 );  
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    width: 300px;
+    position: absolute;
+    top: 25%;
+    left: 45%;
+    border-radius: 20px;   
+    border: 1px solid rgba( 255, 255, 255, 0.18 );    
+}
+form p {
+    color: #e00e03; 
+}

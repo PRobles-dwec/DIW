@@ -9,6 +9,6 @@ form input, button {
     color: red;
     font-weight: bold;
 }
-button {
-    padding: 10px;
+button, input {
+    padding: 8px;
 }

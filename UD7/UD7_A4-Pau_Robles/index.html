@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UD7 A4 - Pau Robles</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-router@4.0.15/dist/vue-router.global.js"></script>
+    
+    <link rel="stylesheet" href="./css/index.css"> 
+</head>
+<body>    
+    <div id="app">
+        <component-header :nickname="user_log"> </component-header> <!-- We tell that he must call the variable nickname, that is assigned to the variable to save the user that is logged. -->
+        <router-view @updateuserlogged="updateuserlogged"></router-view> <!-- We call the method to update the user that is logged. Everytime we click, it will change the nickname, and the nickname will appear in all the pages. -->
+    </div>   
+    <script type="module">        
+        import ComponentHeader from "./components/Header.js"              
+        
+        import router from "./router.js";
+        
+        const { createApp } = Vue;
+
+        const app = createApp({
+            data() {
+                return {
+                    user_log: null,
+                }
+            },
+            methods: {
+                updateuserlogged(nickname) { /* This method is to update the user that is actually logged. It will update the nickname. */
+                    this.user_log = nickname; /* We assign the nickname to the user_log */
+                }
+            },
+            components: {
+                ComponentHeader               
+            },
+            beforeCreate: function() {
+                //comprovar si hi ha cap usuari loguejat. Si és així, anar a productes
+                //llegir usuari loguejat 
+
+                if(JSON.parse(localStorage.getItem('user_logged')) == null) {
+                    this.$router.push("/login");
+                } else {
+                   this.$router.push("/fruits");
+                }                
+            }            
+        });
+        app.use(router);
+        app.mount("#app");
+    </script>    
+</body>
+</html>

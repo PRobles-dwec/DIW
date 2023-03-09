@@ -11,12 +11,18 @@
 <body>
     <div id="app">
         <form>
-            <h1>Enter an integer: </h1>
-            <input type="number" v-model="number" id="numInt">
-            <button @click="addNumber">Submit</button>    
-            <div id="errorMessage"> </div>        
-        </form>   
-        <Number v-bind:number="number" v-on:click-number="clickNumber"></Number>        
+            <h1> Enter an integer: </h1>
+            <input type="number" v-model="number">
+            <button @click.prevent="addNumber"> Submit </button> <!-- We prevent that if we click the button, to refresh automatically. -->
+            <h2 v-show="show_errorEmpty" :style="styleError"> The input is empty. Please write something. </h2>   
+            <h2 v-show="show_errorNotANumber" :style="styleError"> You have to enter a correct value.  </h2>   
+            <h2 v-show="show_errorRepeated" :style="styleError"> The number already exists  </h2>               
+        </form>  
+        <h1 v-show="show_number"> List of numbers </h1> <!-- It will appear with the list of numbers in buttons. -->
+        <Number v-for="number in arrayNumbers" v-show="show_number" v-bind:number="number" v-on:click-number="clickNumber"></Number>        
+        <!-- With the v-for, we are executing all the array of numbers, and it will be adding the number to the array, and show it here. -->
+        
+        <h1 v-show="show_number_pressed"> The number pressed is: {{value_pressed}} </h1> <!--We pass the value that we are pressing. -->
     </div>
     <script type="module">
         import Number from "./js/Number.js"       
@@ -28,24 +34,40 @@
                 return {
                    number: null,
                    show_number: false,
-                   arrayNumbers: [],                   
+                   show_number_pressed: false,
+                   arrayNumbers: [],
+                   value_pressed: null,
+                   show_errorEmpty: "", 
+                   show_errorRepeated: false,
+                   styleError: { /* Class to style the errors */
+                        color: 'red',
+                        fontSize: '20px',
+                   }
                 }
             },
             components: {                                                             
-                Number,
+                Number
             },
             methods: {
-                clickNumber: function(e) {
-                    //e.preventDefault();                    
-                    //var errorMessage = document.getElementById("errorMessage");
-                    console.log(this.arrayNumbers.push(this.number));
-                                                        
+                clickNumber: function(value) {  
+                   this.show_number_pressed = true; // Show the text that tells you the number that you pressed.                 
+                   this.value_pressed = value; // We will pass the value_pressed to value, that it will be the actual number.
                 },
-                addNumber: function() {
-                    console.log("Hola");
+                addNumber: function() {                   
+                    if(this.number == null) { // If the input is empty.
+                        this.show_errorEmpty = true; // Show the error because it's empty.
+                        this.show_number = true; // Show the list of numbers.
+                    } 
+                    else if(this.arrayNumbers.includes(this.number)) { // If the number exists in the array.
+                        this.show_errorRepeated = true; // Show the error because it's repeated.
+                        this.show_number = true; // Show the list of numbers.
+                    }              
+                    else { // This will execute only if the others if don't execute. It will mean that it doesn't have errors.
+                        this.show_number = true; // Show the list of numbers.
+                        this.arrayNumbers.push(this.number);
+                    }
                 }
             }
-
         }).mount("#app");        
     </script>    
 </body>
