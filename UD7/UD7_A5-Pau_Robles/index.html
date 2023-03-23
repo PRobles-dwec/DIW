@@ -35,7 +35,11 @@
                     buttonlogin: false,
                     buttonregister: true,      
                 }
-            },           
+            },
+            computed: {
+                ...Pinia.mapState(store, ['user_logged']),
+                ...Pinia.mapState(store, ['users'])
+            },             
             methods: {
                 updateuserlogged(nickname) { /* This method is to update the user that is actually logged. It will update the nickname. */
                     this.user_log = nickname; /* We assign the nickname to the user_log */                    
@@ -52,16 +56,8 @@
                     console.log(buttonregister);
                     this.buttonregister = buttonregister;
                 },
-            },   
-                computed: {
-            ...Pinia.mapState(store, ['count']),
-            ...Pinia.mapState(store, ['list'])
-            },
-            methods: {
-                ...Pinia.mapActions(store, ['increment']),
-                ...Pinia.mapActions(store, ['addItem']),
-                ...Pinia.mapActions(store, ['deleteItem'])
-            },         
+                ...Pinia.mapActions(store, ['init']),
+            },                   
             components: {
                 ComponentHeader               
             },
@@ -69,13 +65,16 @@
                 //comprovar si hi ha cap usuari loguejat. Si és així, anar a productes
                 //llegir usuari loguejat 
 
-                if(localStorage.getItem('user_logged') == null) {
+                this.init();
+
+                if(this.user_logged == null) {
                     this.$router.push("/login");                                    
                 } else {
                     this.user_log = localStorage.getItem('user_logged');
                     this.$emit("updatebuttonlogout", true);
                     this.$router.push("/fruits");                    
-                }                
+                }  
+                              
             }            
         });
         app.use(router);
