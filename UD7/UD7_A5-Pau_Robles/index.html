@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UD7 A4 - Pau Robles</title>
+    <title>UD7 A5 - Pau Robles</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://unpkg.com/vue-router@4.0.15/dist/vue-router.global.js"></script>
     <link rel="shortcut icon" href="https://cdn.shopify.com/s/files/1/0444/7109/1363/files/LOGO_600x.png?v=1603813880" type="image/x-icon"> 
     <link rel="stylesheet" href="./css/index.css"> 
+    <script src="https://unpkg.com/vue-demi"></script>
+    <script src="https://unpkg.com/pinia"></script>
 </head>
 <body>    
     <div id="app">
@@ -19,7 +21,10 @@
         import ComponentHeader from "./components/Header.js"              
         
         import router from "./router.js";
-        
+        import store from "./store.js";
+
+        const pinia = Pinia.createPinia();
+
         const { createApp } = Vue;
 
         const app = createApp({
@@ -47,7 +52,16 @@
                     console.log(buttonregister);
                     this.buttonregister = buttonregister;
                 },
-            },            
+            },   
+                computed: {
+            ...Pinia.mapState(store, ['count']),
+            ...Pinia.mapState(store, ['list'])
+            },
+            methods: {
+                ...Pinia.mapActions(store, ['increment']),
+                ...Pinia.mapActions(store, ['addItem']),
+                ...Pinia.mapActions(store, ['deleteItem'])
+            },         
             components: {
                 ComponentHeader               
             },
@@ -65,6 +79,7 @@
             }            
         });
         app.use(router);
+        app.use(pinia);
         app.mount("#app");
     </script>    
 </body>

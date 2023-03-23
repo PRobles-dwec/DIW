@@ -14,6 +14,7 @@ export default {
             nickname: "",
         }
     },
+    emits: ['updateuserlogged'],
     template: `        
         <div>
             <h1> LOGIN </h1>        
