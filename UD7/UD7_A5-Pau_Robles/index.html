@@ -14,8 +14,8 @@
 </head>
 <body>    
     <div id="app">
-        <component-header :nickname="user_log" :buttonlogout="buttonlogout" :buttonlogin="buttonlogin" :buttonregister="buttonregister" @updatebuttonlogout="updatebuttonlogout" @updatebuttonlogin="updatebuttonlogin" @updateregister="updateregister" @updateuserlogged="updateuserlogged"> </component-header> <!-- We tell that he must call the variable nickname, that is assigned to the variable to save the user that is logged. -->
-        <router-view @updateuserlogged="updateuserlogged" @updatebuttonlogout="updatebuttonlogout" @updatebuttonlogin="updatebuttonlogin" @updateregister="updateregister"></router-view> <!-- We call the method to update the user that is logged. Everytime we click, it will change the nickname, and the nickname will appear in all the pages. -->
+        <component-header :buttonlogout="buttonlogout" :buttonlogin="buttonlogin" :buttonregister="buttonregister" @updatebuttonlogout="updatebuttonlogout" @updatebuttonlogin="updatebuttonlogin" @updateregister="updateregister" :user_logged="user_logged"> </component-header> <!-- We tell that he must call the variable nickname, that is assigned to the variable to save the user that is logged. -->
+        <router-view :user_logged="user_logged" @updatebuttonlogout="updatebuttonlogout" @updatebuttonlogin="updatebuttonlogin" @updateregister="updateregister"></router-view> <!-- We call the method to update the user that is logged. Everytime we click, it will change the nickname, and the nickname will appear in all the pages. -->
     </div>   
     <script type="module">        
         import ComponentHeader from "./components/Header.js"              
@@ -30,7 +30,7 @@
         const app = createApp({
             data() {
                 return {
-                    user_log: null,
+                    // user_log: null,
                     buttonlogout: false,   
                     buttonlogin: false,
                     buttonregister: true,      
@@ -38,12 +38,12 @@
             },
             computed: {
                 ...Pinia.mapState(store, ['user_logged']),
-                ...Pinia.mapState(store, ['users'])
+                ...Pinia.mapState(store, ['getUsers'])
             },             
             methods: {
-                updateuserlogged(nickname) { /* This method is to update the user that is actually logged. It will update the nickname. */
-                    this.user_log = nickname; /* We assign the nickname to the user_log */                    
-                },
+                // updateuserlogged(nickname) { /* This method is to update the user that is actually logged. It will update the nickname. */
+                //     this.user_log = nickname; /* We assign the nickname to the user_log */                    
+                // },
                 updatebuttonlogout(buttonlogout) { /* This method shows the button to logout. */
                     this.buttonlogout = buttonlogout; // The buttonlogout will be the logout.
                     
@@ -55,9 +55,7 @@
                     console.log(buttonregister);
                     this.buttonregister = buttonregister;
                 },
-                ...Pinia.mapActions(store, ['init']),
-                ...Pinia.mapActions(store, ['registerUser']),
-                ...Pinia.mapActions(store, ['loginUser']),
+                ...Pinia.mapActions(store, ['init'])
             },                   
             components: {
                 ComponentHeader               
@@ -66,13 +64,15 @@
                 //comprovar si hi ha cap usuari loguejat. Si és així, anar a productes
                 //llegir usuari loguejat 
 
-                this.init();                
-
-                if(this.user_logged == null) {
+                this.init();   
+             
+                if(this.user_logged === null) {
                     this.$router.push("/login");                                    
                 } else {                    
                     this.$emit("updatebuttonlogout", true);
-                    this.$router.push("/fruits");                    
+                                     
+                    this.$router.push("/fruits");
+                    this.$emit("updateregister", false);                      
                 }                                
             }            
         });

@@ -11,7 +11,7 @@ export default {
     components: {
         Fruit
     },
-    emits: ['updateuserlogged', 'updatebuttonlogout', 'updatebuttonlogin', 'updateregister'],    
+    emits: ['user_logged', 'updatebuttonlogout', 'updatebuttonlogin', 'updateregister'],    
     template: `
         <fruit v-for="fruit in fruits" class="article" v-bind:fruit="fruit" v-show="fruit.isActive || fruit.hasStock">
         </fruit>

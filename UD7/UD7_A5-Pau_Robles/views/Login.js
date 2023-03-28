@@ -1,3 +1,5 @@
+import store from "../store.js";
+
 export default {
     name: "ViewLogin",
     data() {
@@ -12,7 +14,11 @@ export default {
             nickname: "",
         }
     },    
-    emits: ['updateuserlogged', 'updatebuttonlogout', 'updatebuttonlogin', 'updateregister'],        
+    emits: ['user_logged', 'updatebuttonlogout', 'updatebuttonlogin', 'updateregister'],    
+    computed: {
+        ...Pinia.mapState(store, ['user_logged']),
+        ...Pinia.mapState(store, ['getUsersByEmail']),
+    }, 
     methods: {
         loginUser: function() { 
             this.errorEmail = false; 
@@ -48,7 +54,7 @@ export default {
                         if(this.password === user.password) {
                             localStorage.setItem("user_logged", user.nickname);  
     
-                            this.$emit("updateuserlogged", user.nickname); // We will call the method that we created in the index to update the user that is logged. 
+                            this.$emit("user_logged", user.nickname); // We will call the method that we created in the index to update the user that is logged. 
                             /* And we will call the nickname that is saved in the LocalStorage */
                                
                             this.email = "";
@@ -59,7 +65,7 @@ export default {
                             this.$emit("updateregister", false);
 
                             this.$router.push("/fruits"); 
-                            this.loginUser();                            
+                            //this.getUsersByEmail();                            
                         }                        
                         else {                            
                             this.errorDifferentPassword = true;

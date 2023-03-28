@@ -1,3 +1,5 @@
+import store from "../store.js";
+
 export default {
     name: "ViewRegister",
     data() {
@@ -17,7 +19,11 @@ export default {
             users: [],                 
         }        
     },
-    emits: ['updateuserlogged', 'updatebuttonlogout', 'updatebuttonlogin', 'updateregister'],    
+    emits: ['updatebuttonlogout', 'updatebuttonlogin', 'updateregister'],  
+    computed: {
+        ...Pinia.mapState(store, ['user_logged']),
+        ...Pinia.mapState(store, ['addUser']),
+    },   
     methods: {         
         registerUser: function(){   
             this.errorEmail = false;
@@ -74,7 +80,7 @@ export default {
                                             localStorage.setItem("users", JSON.stringify(this.users));
                                             localStorage.setItem("user_logged", user.nickname);   
                                         
-                                            this.$emit("updateuserlogged", user.nickname);
+                                            //this.user_logged();
                                         
                                             this.email = "";
                                             this.nickname = "";
@@ -86,7 +92,7 @@ export default {
                                             this.$emit("updateregister", false);  
                                             this.$emit("updatebuttonlogin", false);  
 
-                                            this.registerUser();
+                                            this.addUser();
                                         }
                                     } 
                                 }
