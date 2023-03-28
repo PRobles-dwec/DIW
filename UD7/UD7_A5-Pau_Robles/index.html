@@ -51,12 +51,13 @@
                 updatebuttonlogin(buttonlogin){
                     this.buttonlogin = buttonlogin;
                 },
-                updateregister(buttonregister){
-                    console.log("TRYING");
+                updateregister(buttonregister){                    
                     console.log(buttonregister);
                     this.buttonregister = buttonregister;
                 },
                 ...Pinia.mapActions(store, ['init']),
+                ...Pinia.mapActions(store, ['registerUser']),
+                ...Pinia.mapActions(store, ['loginUser']),
             },                   
             components: {
                 ComponentHeader               
@@ -65,16 +66,14 @@
                 //comprovar si hi ha cap usuari loguejat. Si és així, anar a productes
                 //llegir usuari loguejat 
 
-                this.init();
+                this.init();                
 
                 if(this.user_logged == null) {
                     this.$router.push("/login");                                    
-                } else {
-                    this.user_log = localStorage.getItem('user_logged');
+                } else {                    
                     this.$emit("updatebuttonlogout", true);
                     this.$router.push("/fruits");                    
-                }  
-                              
+                }                                
             }            
         });
         app.use(router);

@@ -59,6 +59,7 @@ export default {
                             this.$emit("updateregister", false);
 
                             this.$router.push("/fruits"); 
+                            this.loginUser();                            
                         }                        
                         else {                            
                             this.errorDifferentPassword = true;

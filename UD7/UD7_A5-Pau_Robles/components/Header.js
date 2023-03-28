@@ -1,31 +1,29 @@
 export default {
     name: "ComponentHeader",
     props: ["nickname", "buttonlogout", "buttonlogin", "buttonregister"], // We will pick up the nickname from the index.
-    emits: ["updatebuttonlogin", "updateregister", "updatebuttonlogout", "updateuserlogged"],
+    emits: ["updatebuttonlogout", "updateregister", "updatebuttonlogin", "updateuserlogged"],
     methods: {
-        gotoLogin: function() { // Method to login.
-           
+        gotoLogin: function() {
+            this.$router.push("/login");
+             
             this.$emit("updatebuttonlogout", false);                                                                                  
             this.$emit("updateregister", true); 
-            this.$emit("updatebuttonlogin", false); 
-            this.$router.push("/login");     
+            this.$emit("updatebuttonlogin", false);       
         },
-        gotoRegister: function() { // Method to register.
+        gotoRegister: function() {            
             this.$emit("updateregister", false); 
-            console.log("goToRegister");
-            this.$emit("updatebuttonlogout", false);                                                                                
-            
-            this.$emit("updatebuttonlogin", true);   
-            this.$router.push("/register");  
+            this.$emit("updatebuttonlogin", true);             
+            this.$emit("updatebuttonlogout", false);     
+            this.$router.push("/register");                
         },
-        doLogout: function() { // Method to logout.
-            localStorage.removeItem("user_logged");
+        doLogout: function() {
+            localStorage.removeItem("user_logged");                
             this.$emit("updateuserlogged", null);
             this.$emit("updatebuttonlogout", false);                                                                                  
-            this.$emit("updateregister", false); 
-            this.$emit("updatebuttonlogin", true);   
-            console.log("doLogout");
-            this.$router.push("/login"); 
+            this.$emit("updateregister", true); 
+            this.$emit("updatebuttonlogin", false);  
+            console.log("Logged out"); 
+            this.$router.push("/login");     
         },     
     },
     template: 

@@ -17,8 +17,7 @@ export default {
             users: [],                 
         }        
     },
-    emits: ['updateuserlogged', 'updatebuttonlogout', 'updatebuttonlogin', 'updateregister'],
-    
+    emits: ['updateuserlogged', 'updatebuttonlogout', 'updatebuttonlogin', 'updateregister'],    
     methods: {         
         registerUser: function(){   
             this.errorEmail = false;
@@ -87,6 +86,7 @@ export default {
                                             this.$emit("updateregister", false);  
                                             this.$emit("updatebuttonlogin", false);  
 
+                                            this.registerUser();
                                         }
                                     } 
                                 }
