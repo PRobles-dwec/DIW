@@ -3,14 +3,13 @@ import store from "../store.js";
 export default {
     name: "ComponentHeader",
     props: ["buttonlogout", "buttonlogin", "buttonregister"], // We will pick up the nickname from the index.
-    emits: ["updatebuttonlogout", "updateregister", "updatebuttonlogin", "user_logged" , "deleteUserLogged"],
+    emits: ["updatebuttonlogout", "updateregister", "updatebuttonlogin"],
     methods: {
-        gotoLogin: function() {
-            this.$router.push("/login");
-             
+        gotoLogin: function() {                         
             this.$emit("updatebuttonlogout", false);                                                                                  
             this.$emit("updateregister", true); 
             this.$emit("updatebuttonlogin", false);       
+            this.$router.push("/login");
         },
         gotoRegister: function() {            
             this.$emit("updateregister", false); 
@@ -19,8 +18,6 @@ export default {
             this.$router.push("/register");                
         },
         doLogout: function() {
-            //localStorage.removeItem("user_logged");                
-            //this.$emit("updateuserlogged", null);
             this.$emit("updatebuttonlogout", false);                                                                                  
             this.$emit("updateregister", true); 
             this.$emit("updatebuttonlogin", false);  

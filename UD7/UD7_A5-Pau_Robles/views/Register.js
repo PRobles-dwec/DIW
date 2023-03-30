@@ -15,16 +15,16 @@ export default {
             email: "",
             nickname: "",
             password: "",
-            repeatPassword: "",
-            users: [],                 
+            repeatPassword: "",                           
         }        
     },
     emits: ['updatebuttonlogout', 'updatebuttonlogin', 'updateregister'],  
-    computed: {
-        ...Pinia.mapState(store, ['user_logged']),
-        ...Pinia.mapState(store, ['addUser']),
+    computed: {        
+        ...Pinia.mapState(store, ['getUsers'])        
     },   
-    methods: {         
+    methods: { 
+        ...Pinia.mapActions(store, ['updateuserlogged']),
+        ...Pinia.mapState(store, ['addUser']),        
         registerUser: function(){   
             this.errorEmail = false;
             this.errorNickname = false;
@@ -55,7 +55,7 @@ export default {
                                     this.errorRepeatPassword = true;
                                 } else {
                                     if(!this.errorEmail && !this.errorNickname && !this.errorPassword && !this.errorRepeatPassword && !this.errorNotEmail && !this.errorPassword2){                                                        
-                                        this.users = JSON.parse(localStorage.getItem("users"));
+                                       this.users = JSON.parse(localStorage.getItem("users"));
             
                                         if(this.users !== null) {
                                             if(this.users.find((user) => user.email === this.email)){
@@ -79,9 +79,7 @@ export default {
                 
                                             localStorage.setItem("users", JSON.stringify(this.users));
                                             localStorage.setItem("user_logged", user.nickname);   
-                                        
-                                            //this.user_logged();
-                                        
+                                                                                                                            
                                             this.email = "";
                                             this.nickname = "";
                                             this.password = "";
@@ -92,7 +90,8 @@ export default {
                                             this.$emit("updateregister", false);  
                                             this.$emit("updatebuttonlogin", false);  
 
-                                            this.addUser();
+                                            this.updateuserlogged(user.nickname);
+                                            this.addUser(user);
                                         }
                                     } 
                                 }

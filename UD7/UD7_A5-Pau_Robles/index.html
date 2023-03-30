@@ -14,45 +14,38 @@
 </head>
 <body>    
     <div id="app">
-        <component-header :buttonlogout="buttonlogout" :buttonlogin="buttonlogin" :buttonregister="buttonregister" @updatebuttonlogout="updatebuttonlogout" @updatebuttonlogin="updatebuttonlogin" @updateregister="updateregister" :user_logged="user_logged"> </component-header> <!-- We tell that he must call the variable nickname, that is assigned to the variable to save the user that is logged. -->
-        <router-view :user_logged="user_logged" @updatebuttonlogout="updatebuttonlogout" @updatebuttonlogin="updatebuttonlogin" @updateregister="updateregister"></router-view> <!-- We call the method to update the user that is logged. Everytime we click, it will change the nickname, and the nickname will appear in all the pages. -->
+        <component-header :buttonlogout="buttonlogout" :buttonlogin="buttonlogin" :buttonregister="buttonregister" @updatebuttonlogout="updatebuttonlogout" @updatebuttonlogin="updatebuttonlogin" @updateregister="updateregister" @updateuserlogged="updateuserlogged" :user_logged="user_logged"> </component-header> <!-- We tell that he must call the variable nickname, that is assigned to the variable to save the user that is logged. -->
+        <router-view @updateuserlogged="updateuserlogged" @updatebuttonlogout="updatebuttonlogout" @updatebuttonlogin="updatebuttonlogin" @updateregister="updateregister"></router-view> <!-- We call the method to update the user that is logged. Everytime we click, it will change the nickname, and the nickname will appear in all the pages. -->
     </div>   
     <script type="module">        
-        import ComponentHeader from "./components/Header.js"              
-        
+        import ComponentHeader from "./components/Header.js"                      
         import router from "./router.js";
         import store from "./store.js";
 
         const pinia = Pinia.createPinia();
-
         const { createApp } = Vue;
 
         const app = createApp({
             data() {
-                return {
-                    // user_log: null,
+                return {                    
                     buttonlogout: false,   
                     buttonlogin: false,
                     buttonregister: true,      
                 }
             },
             computed: {
+                ...Pinia.mapState(store, ['updateuserlogged']),
                 ...Pinia.mapState(store, ['user_logged']),
-                ...Pinia.mapState(store, ['getUsers'])
+                ...Pinia.mapState(store, ['getUsersByEmail']),
             },             
-            methods: {
-                // updateuserlogged(nickname) { /* This method is to update the user that is actually logged. It will update the nickname. */
-                //     this.user_log = nickname; /* We assign the nickname to the user_log */                    
-                // },
+            methods: {                
                 updatebuttonlogout(buttonlogout) { /* This method shows the button to logout. */
-                    this.buttonlogout = buttonlogout; // The buttonlogout will be the logout.
-                    
+                    this.buttonlogout = buttonlogout; // The buttonlogout will be the logout.                    
                 },
                 updatebuttonlogin(buttonlogin){
                     this.buttonlogin = buttonlogin;
                 },
                 updateregister(buttonregister){                    
-                    console.log(buttonregister);
                     this.buttonregister = buttonregister;
                 },
                 ...Pinia.mapActions(store, ['init'])
@@ -68,11 +61,10 @@
              
                 if(this.user_logged === null) {
                     this.$router.push("/login");                                    
-                } else {                    
-                    this.$emit("updatebuttonlogout", true);
-                                     
-                    this.$router.push("/fruits");
-                    this.$emit("updateregister", false);                      
+                } else {   
+                    this.$router.push("/fruits");                 
+                    this.updatebuttonlogout(true);                                                          
+                    this.updateregister(false);                      
                 }                                
             }            
         });

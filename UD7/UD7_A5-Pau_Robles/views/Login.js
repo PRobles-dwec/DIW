@@ -14,12 +14,10 @@ export default {
             nickname: "",
         }
     },    
-    emits: ['user_logged', 'updatebuttonlogout', 'updatebuttonlogin', 'updateregister'],    
-    computed: {
-        ...Pinia.mapState(store, ['user_logged']),
-        ...Pinia.mapState(store, ['getUsersByEmail']),
-    }, 
+    emits: ['updatebuttonlogout', 'updatebuttonlogin', 'updateregister'],        
     methods: {
+        ...Pinia.mapActions(store, ['updateuserlogged']),
+        ...Pinia.mapActions(store, ['getUsersByEmail']),
         loginUser: function() { 
             this.errorEmail = false; 
             this.errorNotEmail = false;
@@ -52,10 +50,7 @@ export default {
                         //comprovar dues passwords iguals
     
                         if(this.password === user.password) {
-                            localStorage.setItem("user_logged", user.nickname);  
-    
-                            this.$emit("user_logged", user.nickname); // We will call the method that we created in the index to update the user that is logged. 
-                            /* And we will call the nickname that is saved in the LocalStorage */
+                            localStorage.setItem("user_logged", user.nickname);                              
                                
                             this.email = "";
                             this.password = "";
@@ -65,7 +60,10 @@ export default {
                             this.$emit("updateregister", false);
 
                             this.$router.push("/fruits"); 
-                            //this.getUsersByEmail();                            
+
+                            this.updateuserlogged(user.nickname);
+
+                            this.getUsersByEmail(user.email);                            
                         }                        
                         else {                            
                             this.errorDifferentPassword = true;
