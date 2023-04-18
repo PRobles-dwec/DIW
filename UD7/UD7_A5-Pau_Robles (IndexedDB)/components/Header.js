@@ -2,19 +2,21 @@ import store from "../store.js";
 
 export default {
     name: "ComponentHeader",
-    props: ["buttonlogout", "buttonlogin", "buttonregister"], // We will pick up the nickname from the index.
-    emits: ["updatebuttonlogout", "updateregister", "updatebuttonlogin"],
+    props: ["buttonlogout", "buttonlogin", "buttonregister", "buttonDeleteUser"], // We will pick up the nickname from the index.
+    emits: ["updatebuttonlogout", "updateregister", "updatebuttonlogin", "updatebuttonDeleteUser"],
     methods: {
         gotoLogin: function() {                         
             this.$emit("updatebuttonlogout", false);                                                                                  
             this.$emit("updateregister", true); 
             this.$emit("updatebuttonlogin", false);       
+            this.$emit("updatebuttonDeleteUser", false);       
             this.$router.push("/login");
         },
         gotoRegister: function() {            
             this.$emit("updateregister", false); 
             this.$emit("updatebuttonlogin", true);             
-            this.$emit("updatebuttonlogout", false);     
+            this.$emit("updatebuttonlogout", false);
+            this.$emit("updatebuttonDeleteUser", false);       
             this.$router.push("/register");                
         },
         doLogout: function() {
@@ -24,12 +26,21 @@ export default {
             console.log("Logged out"); 
             this.$router.push("/login"); 
             this.deleteUserLogged();    
-        },     
+        },  
+        DeleteUser: function() {
+            this.$emit("updatebuttonlogout", false);                                                                                  
+            this.$emit("updateregister", true); 
+            this.$emit("updatebuttonlogin", false);  
+            console.log("Deleting user."); 
+            this.$router.push("/login"); 
+            this.deleteUser();
+        }   
     },
     computed: {
         ...Pinia.mapState(store, ['user_logged']),
         ...Pinia.mapState(store, ['deleteUserLogged']),
-    }, 
+        ...Pinia.mapState(store, ['deleteUser']),
+    },
     template: 
     `   <div> 
             <header>
@@ -38,6 +49,7 @@ export default {
                 <button v-show="buttonlogin" @click="gotoLogin()"> Login </button>
                 <button v-show="buttonregister" @click="gotoRegister()"> Register </button>                
                 <button v-show="buttonlogout" @click="doLogout()"> Logout </button>
+                <button v-show="buttonDeleteUser" @click="DeleteUser()"> Delete account </button>
             </header>
         </div>
     `
