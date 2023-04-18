@@ -55,7 +55,6 @@ export default {
                                     this.errorRepeatPassword = true;
                                 } else {
                                     if(!this.errorEmail && !this.errorNickname && !this.errorPassword && !this.errorRepeatPassword && !this.errorNotEmail && !this.errorPassword2){                                                        
-                                    //    this.users = JSON.parse(localStorage.getItem("users"));
             
                                         if(this.users !== null) {
                                             if(this.users.find((user) => user.email === this.email)){
@@ -86,9 +85,7 @@ export default {
                                             this.$router.push("/fruits");   
                                             this.$emit("updatebuttonlogout", true);                                                                                  
                                             this.$emit("updateregister", false);  
-                                            this.$emit("updatebuttonlogin", false);  
-
-                                            
+                                            this.$emit("updatebuttonlogin", false);                                              
                                         }
                                     } 
                                 }

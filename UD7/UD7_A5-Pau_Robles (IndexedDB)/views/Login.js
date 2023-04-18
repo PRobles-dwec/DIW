@@ -37,8 +37,7 @@ export default {
             } else {
                 if(!(this.email.match(regex))){                  
                     this.errorNotEmail = true;         
-                } else {
-                    //  this.users = JSON.parse(localStorage.getItem("users"));            
+                } else {           
                     console.log(this.users);
                     if (this.users !== null){
                         var user = this.users.find((user) => user.email === this.email);                       
