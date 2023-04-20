@@ -17,6 +17,11 @@ const store = Pinia.defineStore('counter', {
                 return state.users.filter(u => u.email === email );
             }            
         },
+        getUserByNickname: function (state) { // Method to get an specific user.
+          return function(nickname) {
+              return state.users.filter(u => u.nickname === nickname );
+          }            
+        },
 
         getUsers: function (state) { // Method to get all the users.
             return state.users;
@@ -92,6 +97,16 @@ const store = Pinia.defineStore('counter', {
             console.log(result);            
           }
         }
+
+        req.onerror = function(e) {
+          console.log("Error reading users: ", e.target.errorCode);
+        };
+
+        tx.oncomplete = function() {
+          console.log("Tx completed");
+          db.close();
+          opened = false;
+        }
       },
 
       readUserLogged(db) {
@@ -113,18 +128,27 @@ const store = Pinia.defineStore('counter', {
             console.log("No users logged.");
             console.log(result);            
           }
+        };
+
+        req.onerror = function(e) {
+          console.log("Error reading user logged: ", e.target.errorCode);
+        };
+
+        tx.oncomplete = function() {
+          console.log("Tx completed");
+          db.close();
+          opened = false;
         }
       },
 
       deleteUserLogged() { // Method to delete the user logged
-        //let userLogged = user.target.getAttribute("nickname");
         console.log(this.user_logged);
 
         var tx = db.transaction(DB_STORE_NAME_2, "readwrite");
 
         var store = tx.objectStore(DB_STORE_NAME_2);
 
-        var request = store.delete(user_logged);
+        var request = store.delete(this.user_logged);
 
         request.onsuccess = function() {
           console.log("The user that was logged was deleted." + request.result);
@@ -139,13 +163,19 @@ const store = Pinia.defineStore('counter', {
       },
 
       deleteUser() {
-        console.log(this.users);
+        console.log("Deleting User");
+        console.log(this.user_logged);
+
+        let user = this.getUserByNickname(this.user_logged);
+        console.log(user[0]);
+        console.log({...user[0].nickname});
+
 
         let tx = db.transaction(DB_STORE_NAME, "readwrite");
 
         let store = tx.objectStore(DB_STORE_NAME);
 
-        let request = store.delete(user);
+        let request = store.delete();
 
         request.onsuccess = function() {
           console.log("The user was deleted." + request.result);

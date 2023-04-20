@@ -18,7 +18,7 @@ export default {
             repeatPassword: "",                           
         }        
     },
-    emits: ['updatebuttonlogout', 'updatebuttonlogin', 'updateregister'],  
+    emits: ['updatebuttonlogout', 'updatebuttonlogin', 'updateregister', 'updatebuttondeleteuser'],  
     computed: {        
         ...Pinia.mapState(store, ['users'])        
     },   
@@ -84,6 +84,7 @@ export default {
                 
                                             this.$router.push("/fruits");   
                                             this.$emit("updatebuttonlogout", true);                                                                                  
+                                            this.$emit("updatebuttondeleteuser", true);                                                                                  
                                             this.$emit("updateregister", false);  
                                             this.$emit("updatebuttonlogin", false);                                              
                                         }

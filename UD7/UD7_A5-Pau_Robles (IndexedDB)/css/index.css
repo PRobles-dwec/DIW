@@ -4,13 +4,13 @@
     box-sizing: border-box;
 }
 body {
-    background-image: url("https://img2.rtve.es/i/?w=1600&i=1638441369011.jpg");
+    background-color: #000000;
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
 }
 header{
-    background-color: rgba( 255, 255, 255, 0.25 );  
+    background-color: #7D84B2;  
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     width: 100%;
     height: 90px;     
@@ -69,7 +69,7 @@ button {
     padding: 10px;
     margin: 5px;
     border-radius: 20px;   
-    background-color: #5C80BC;
+    background-color: #D9DBF1;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     border-radius: 10px;
 }
@@ -93,7 +93,7 @@ input::placeholder {
 }
 #login-Form {
     text-align: center;  
-    background-color: rgba( 255, 255, 255, 0.7 );   
+    background-color: #7D84B2;   
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     width: 300px;
     position: absolute;
@@ -120,7 +120,6 @@ input::placeholder {
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     border: 1px solid rgba( 255, 255, 255, 0.18 ); 
     font-size: 20px;   
-    transition: width 0.4s ease-in-out;  
 }
 #register-Form input:hover {
     width: 90%;
@@ -140,15 +139,14 @@ input::placeholder {
 }
 #register-Form {
     text-align: center;  
-    background-color: rgba( 255, 255, 255, 0.7 );  
+    background-color: #7D84B2;  
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     width: 300px;
     position: absolute;
     top: 25%;
     left: 43%;
     border-radius: 20px;   
-    border: 1px solid rgba( 255, 255, 255, 0.18 ); 
-    opacity: 0.9;   
+    border: 1px solid rgba( 255, 255, 255, 0.18 );   
 }
 #register-Form p {
     color: #92140C;

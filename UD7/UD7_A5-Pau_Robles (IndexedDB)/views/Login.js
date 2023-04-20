@@ -20,6 +20,7 @@ export default {
     },        
     methods: {
         ...Pinia.mapActions(store, ['updateuserlogged']),
+        ...Pinia.mapActions(store, ['readUsers']),
         loginUser: function() { 
             this.errorEmail = false; 
             this.errorNotEmail = false;
@@ -52,7 +53,7 @@ export default {
     
                         if(this.password === user.password) {
                             this.updateuserlogged(user.nickname);                               
-                               
+                            this.readUsers(this.users);   
                             this.email = "";
                             this.password = "";
                                                         

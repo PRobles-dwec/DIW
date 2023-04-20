@@ -14,8 +14,8 @@
 </head>
 <body>    
     <div id="app">
-        <component-header :buttonDeleteUser="buttonDeleteUser" :buttonlogout="buttonlogout" :buttonlogin="buttonlogin" :buttonregister="buttonregister" @updatebuttonDeleteUser="updatebuttonDeleteUser" @updatebuttonlogout="updatebuttonlogout" @updatebuttonlogin="updatebuttonlogin" @updateregister="updateregister"> </component-header> <!-- We tell that he must call the variable nickname, that is assigned to the variable to save the user that is logged. -->
-        <router-view @updatebuttonDeleteUser="updatebuttonDeleteUser" @updatebuttonlogout="updatebuttonlogout" @updatebuttonlogin="updatebuttonlogin" @updateregister="updateregister"></router-view> <!-- We call the method to update the user that is logged. Everytime we click, it will change the nickname, and the nickname will appear in all the pages. -->
+        <component-header :buttondeleteuser="buttondeleteuser" :buttonlogout="buttonlogout" :buttonlogin="buttonlogin" :buttonregister="buttonregister" @updatebuttondeleteuser="updatebuttondeleteuser" @updatebuttonlogout="updatebuttonlogout" @updatebuttonlogin="updatebuttonlogin" @updateregister="updateregister"> </component-header> <!-- We tell that he must call the variable nickname, that is assigned to the variable to save the user that is logged. -->
+        <router-view @updatebuttondeleteuser="updatebuttondeleteuser" @updatebuttonlogout="updatebuttonlogout" @updatebuttonlogin="updatebuttonlogin" @updateregister="updateregister"></router-view> <!-- We call the method to update the user that is logged. Everytime we click, it will change the nickname, and the nickname will appear in all the pages. -->
     </div>   
     <script type="module">        
         import ComponentHeader from "./components/Header.js"                      
@@ -31,7 +31,7 @@
                     buttonlogout: false,   
                     buttonlogin: false,
                     buttonregister: true,   
-                    buttonDeleteUser: false,   
+                    buttondeleteuser: false,   
                 }
             },
             computed: {
@@ -49,8 +49,8 @@
                 updateregister(buttonregister){                    
                     this.buttonregister = buttonregister;
                 },
-                updatebuttonDeleteUser(buttonDeleteUser){                    
-                    this.buttonDeleteUser = buttonDeleteUser;
+                updatebuttondeleteuser(buttondeleteuser){                    
+                    this.buttondeleteuser = buttondeleteuser;
                 },
                 ...Pinia.mapActions(store, ['init'])
             },                   

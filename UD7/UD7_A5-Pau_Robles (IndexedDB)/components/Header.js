@@ -2,35 +2,36 @@ import store from "../store.js";
 
 export default {
     name: "ComponentHeader",
-    props: ["buttonlogout", "buttonlogin", "buttonregister", "buttonDeleteUser"], // We will pick up the nickname from the index.
-    emits: ["updatebuttonlogout", "updateregister", "updatebuttonlogin", "updatebuttonDeleteUser"],
+    props: ["buttonlogout", "buttonlogin", "buttonregister", "buttondeleteuser"], // We will pick up the nickname from the index.
+    emits: ["updatebuttonlogout", "updateregister", "updatebuttonlogin", "updatebuttondeleteuser"],
     methods: {
         gotoLogin: function() {                         
             this.$emit("updatebuttonlogout", false);                                                                                  
             this.$emit("updateregister", true); 
             this.$emit("updatebuttonlogin", false);       
-            this.$emit("updatebuttonDeleteUser", false);       
+            this.$emit("updatebuttondeleteuser", false);       
             this.$router.push("/login");
         },
         gotoRegister: function() {            
             this.$emit("updateregister", false); 
             this.$emit("updatebuttonlogin", true);             
             this.$emit("updatebuttonlogout", false);
-            this.$emit("updatebuttonDeleteUser", false);       
+            this.$emit("updatebuttondeleteuser", false);       
             this.$router.push("/register");                
         },
         doLogout: function() {
             this.$emit("updatebuttonlogout", false);                                                                                  
             this.$emit("updateregister", true); 
-            this.$emit("updatebuttonlogin", false);  
+            this.$emit("updatebuttonlogin", false); 
+            this.$emit("updatebuttondeleteuser", false); 
             console.log("Logged out"); 
             this.$router.push("/login"); 
             this.deleteUserLogged();    
         },  
-        DeleteUser: function() {
+        deleteUser: function() {
             this.$emit("updatebuttonlogout", false);                                                                                  
-            this.$emit("updateregister", true); 
-            this.$emit("updatebuttonlogin", false);  
+            this.$emit("updateregister", false); 
+            this.$emit("updatebuttonlogin", true);  
             console.log("Deleting user."); 
             this.$router.push("/login"); 
             this.deleteUser();
@@ -49,7 +50,7 @@ export default {
                 <button v-show="buttonlogin" @click="gotoLogin()"> Login </button>
                 <button v-show="buttonregister" @click="gotoRegister()"> Register </button>                
                 <button v-show="buttonlogout" @click="doLogout()"> Logout </button>
-                <button v-show="buttonDeleteUser" @click="DeleteUser()"> Delete account </button>
+                <button v-show="buttondeleteuser" @click="deleteUser()"> Delete account </button>
             </header>
         </div>
     `
