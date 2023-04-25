@@ -73,10 +73,10 @@ export default {
                                             };  
                                             console.log(user);    
                                             console.log(this.users);    
-                                            
-                                            this.updateuserlogged(user.nickname);
+                                                           
                                             this.addUser(user);
-                                                                                            
+                                            this.updateuserlogged(user.nickname);
+                                                                                                                                        
                                             this.email = "";
                                             this.nickname = "";
                                             this.password = "";

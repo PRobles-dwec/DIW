@@ -31,16 +31,18 @@ export default {
         deleteUser: function() {
             this.$emit("updatebuttonlogout", false);                                                                                  
             this.$emit("updateregister", false); 
-            this.$emit("updatebuttonlogin", true);  
+            this.$emit("updatebuttonlogin", true); 
+            this.$emit("updatebuttondeleteuser", false); 
             console.log("Deleting user."); 
             this.$router.push("/login"); 
-            this.deleteUser();
+            this.deleteuser();
+            this.deleteUserLogged();              
         }   
     },
     computed: {
         ...Pinia.mapState(store, ['user_logged']),
         ...Pinia.mapState(store, ['deleteUserLogged']),
-        ...Pinia.mapState(store, ['deleteUser']),
+        ...Pinia.mapState(store, ['deleteuser']),
     },
     template: 
     `   <div> 

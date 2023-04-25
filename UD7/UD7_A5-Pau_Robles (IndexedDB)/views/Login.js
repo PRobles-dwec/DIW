@@ -1,5 +1,4 @@
 import store from "../store.js";
-
 export default {
     name: "ViewLogin",
     data() {
@@ -14,13 +13,14 @@ export default {
             nickname: "",
         }
     },    
-    emits: ['updatebuttonlogout', 'updatebuttonlogin', 'updateregister'],   
+    emits: ['updatebuttonlogout', 'updatebuttonlogin', 'updateregister', 'updatebuttondeleteuser'],   
     computed: {        
         ...Pinia.mapState(store, ['users'])        
     },        
     methods: {
         ...Pinia.mapActions(store, ['updateuserlogged']),
         ...Pinia.mapActions(store, ['readUsers']),
+        ...Pinia.mapActions(store, ['readUserLogged']),
         loginUser: function() { 
             this.errorEmail = false; 
             this.errorNotEmail = false;
@@ -38,8 +38,7 @@ export default {
             } else {
                 if(!(this.email.match(regex))){                  
                     this.errorNotEmail = true;         
-                } else {           
-                    console.log(this.users);
+                } else {                               
                     if (this.users !== null){
                         var user = this.users.find((user) => user.email === this.email);                       
                         
@@ -49,17 +48,17 @@ export default {
                     }     
                     if(!this.errorEmail && !this.errorNotEmail && !this.errorPassword && !this.errorEmailNotExists) {
                    
-                        //comprovar dues passwords iguals
+                        // Comprovar dues passwords iguals.
     
                         if(this.password === user.password) {
-                            this.updateuserlogged(user.nickname);                               
-                            this.readUsers(this.users);   
+                            this.updateuserlogged(user.nickname);                                
                             this.email = "";
                             this.password = "";
                                                         
                             this.$emit("updatebuttonlogout", true);
                             this.$emit("updatebuttonlogin", false);
                             this.$emit("updateregister", false);
+                            this.$emit("updatebuttondeleteuser", true);
 
                             this.$router.push("/fruits");                                                                                    
                         }                        
