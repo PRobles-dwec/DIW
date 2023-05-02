@@ -22,22 +22,14 @@ const store = Pinia.defineStore('users', {
         },  
     },
     actions: {
-      init() { // Method to innitiate the Pinia DB.
+      init(afterInit) { // Method to innitiate the Pinia DB.
         
         const s = store2();
         s.openDB(function(db) {
-          s.readUsers(db);
-          s.readUserLogged(db);
-        });
-            
-      /* 
-          try {
-              this.user_logged = localStorage.getItem("user_logged");
-          } catch (e) {
-              this.user_logged = null;
-          }   
-      */
-
+          s.readUserLogged(db);  
+          s.readUsers(db, afterInit);
+                       
+        });     
       },   
       
       addUser(user) { // Method to add an user
@@ -64,29 +56,42 @@ const store = Pinia.defineStore('users', {
       deleteuser() {
         console.log("Deleting User");
         console.log(this.user_logged);
-/* 
-        var user = this.getUserByNickname(this.user_logged);
-        console.log(user[0]);
-        var uniqueuserlogged = {...user[0].nickname};
 
-        let tx = db.transaction(DB_STORE_NAME, "readwrite");
+        let userlogged = this.user_logged;
+        const s = store2();
+        s.openDB(function(db) {
+          s.deleteUser(db, userlogged);
+        });
 
-        let store = tx.objectStore(DB_STORE_NAME);
+        /* 
+          var user = this.getUserByNickname(this.user_logged);
+          console.log(user[0]);
+          var uniqueuserlogged = {...user[0].nickname};
 
-        let request = store.delete(uniqueuserlogged);
+          let tx = db.transaction(DB_STORE_NAME, "readwrite");
 
-        request.onsuccess = function() {
-          console.log("The user was deleted." + request.result);
-        };
+          let store = tx.objectStore(DB_STORE_NAME);
 
-        request.onerror = function(e) {
-          console.log("There was an error deleting the user. " + e.target.errorCode);
-        }; */
+          let request = store.delete(uniqueuserlogged);
+
+          request.onsuccess = function() {
+            console.log("The user was deleted." + request.result);
+          };
+
+          request.onerror = function(e) {
+            console.log("There was an error deleting the user. " + e.target.errorCode);
+          }; 
+        */
       },
 
       updateuserlogged(nickname) { /* This method is to update the user that is actually logged. It will update the nickname. */
         console.log("Updating the user logged.");
         this.user_logged = nickname;
+
+        const s = store2();
+        s.openDB(function(db){
+          s.updateuserlogged(db, nickname);
+        });
       },
     },
   });

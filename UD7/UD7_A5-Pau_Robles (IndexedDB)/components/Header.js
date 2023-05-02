@@ -30,13 +30,12 @@ export default {
         },  
         deleteUser: function() {
             this.$emit("updatebuttonlogout", false);                                                                                  
-            this.$emit("updateregister", false); 
-            this.$emit("updatebuttonlogin", true); 
+            this.$emit("updateregister", true); 
+            this.$emit("updatebuttonlogin", false); 
             this.$emit("updatebuttondeleteuser", false); 
             console.log("Deleting user."); 
             this.$router.push("/login"); 
-            this.deleteuser();
-            this.deleteUserLogged();              
+            this.deleteuser();             
         }   
     },
     computed: {

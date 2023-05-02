@@ -61,15 +61,23 @@
                 //comprovar si hi ha cap usuari loguejat. Si és així, anar a productes
                 //llegir usuari loguejat 
 
-                this.init();   
-             
-                if(this.user_logged === null) {
-                    this.$router.push("/login");                                    
-                } else {   
-                    this.$router.push("/fruits");                 
-                    this.updatebuttonlogout(true);                                                          
-                    this.updateregister(false);                      
-                }                                
+                let router = this.$router;
+                let updatebuttonlogout = this.updatebuttonlogout;
+                let updateregister = this.updateregister;
+
+                this.init(function(){
+
+                    const s = store();
+                                        
+                    if(s.user_logged === null) {
+                        router.push("/login");                                                                          
+                    } else {   
+                        router.push("/fruits");                 
+                        updatebuttonlogout(true);                                                          
+                        updateregister(false);                                        
+                    } 
+                });   
+                                              
             }            
         });
         app.use(router);

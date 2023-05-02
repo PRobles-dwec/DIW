@@ -40,11 +40,11 @@ const store2 = Pinia.defineStore('store2', {
         store.createIndex("password", "password", {unique: false});  
         
         var store = db.createObjectStore(DB_STORE_NAME_2, {keyPath: "nickname", unique: true});
-
       };
+     
     },
 
-    readUsers(db) {
+    readUsers(db, afterInit) {
       console.log("Reading the users");
       var tx = db.transaction(DB_STORE_NAME, "readonly");
       var dbstore = tx.objectStore(DB_STORE_NAME);
@@ -57,15 +57,15 @@ const store2 = Pinia.defineStore('store2', {
 
         if(cursor) {
           result.push(cursor.value);
-          console.log(cursor.value);
           cursor.continue();
         } else {
-          console.log("No more users.");
+          console.log("Users:");
           console.log(result);            
         }
 
         const s = store();
         s.users = result;
+        
       }
 
       req.onerror = function(e) {
@@ -76,6 +76,7 @@ const store2 = Pinia.defineStore('store2', {
         console.log("Tx completed");
         db.close();
         opened = false;
+        afterInit();
       }
     },
 
@@ -92,22 +93,22 @@ const store2 = Pinia.defineStore('store2', {
 
         if(cursor) {
           result.push(cursor.value);
-          console.log(cursor.value);
           cursor.continue();
         } else {
-          console.log("No users logged.");         
+          console.log("UserLogged:");  
+          console.log(result[0].nickname);
         }
 
-        console.log(result); 
         const s = store();
-        try {
-          s.users = result;
-          console.log(s.users);
-        } catch (e) {
-          console.log("Error.");
-          s.users = null;
-        }
         
+        s.user_logged = result[0].nickname;
+
+        if (result[0].nickname !== null){
+          s.user_logged = result[0].nickname;
+        } else {
+          s.user_logged = null;
+        }
+            
       };
 
       req.onerror = function(e) {
@@ -145,7 +146,13 @@ const store2 = Pinia.defineStore('store2', {
 
       req.onerror = function (e) {
         console.log("Error adding user");
-      };              
+      };  
+      
+      tx.oncomplete = function() {
+        console.log("Tx completed");
+        db.close();
+        opened = false;
+      }
     },
 
     deleteUserLoggedIndexedDb(db, userlogged) { // Method to delete the user logged
@@ -153,14 +160,19 @@ const store2 = Pinia.defineStore('store2', {
 
       var tx = db.transaction(DB_STORE_NAME_2, "readwrite");
 
-      var store = tx.objectStore(DB_STORE_NAME_2);
+      var dbstore = tx.objectStore(DB_STORE_NAME_2);
 
-      var request = store.delete(userlogged);
-
+      try {
+        var request = dbstore.delete(userlogged);
+      } catch(e) {
+        console.log("Catch");
+      }
+      
       request.onsuccess = function() {
-        console.log("The user that was logged was deleted." + request.result);
+        console.log("The user that was logged was deleted");
 
         const s = store();
+        s.user_logged = userlogged;
         s.user_logged = null;
       };
 
@@ -168,21 +180,22 @@ const store2 = Pinia.defineStore('store2', {
         console.log("There was an error deleting the user logged." + e.target.errorCode);
       };
       
+      tx.oncomplete = function() {
+        console.log("Tx completed");
+        db.close();
+        opened = false;
+      }
     },
 
-    deleteUser() {
+    deleteUser(db, userlogged) {
       console.log("Deleting User");
-      console.log(this.user_logged);
-
-      let user = this.getUserByNickname(this.user_logged);
-      console.log(user[0]);
-      let uniqueuserlogged = {...user[0].nickname};
+      console.log(userlogged);
 
       let tx = db.transaction(DB_STORE_NAME, "readwrite");
 
       let store = tx.objectStore(DB_STORE_NAME);
 
-      let request = store.delete(uniqueuserlogged);
+      let request = store.delete(userlogged);
 
       request.onsuccess = function() {
         console.log("The user was deleted." + request.result);
@@ -191,6 +204,12 @@ const store2 = Pinia.defineStore('store2', {
       request.onerror = function(e) {
         console.log("There was an error deleting the user. " + e.target.errorCode);
       };
+
+      tx.oncomplete = function() {
+        console.log("Tx completed");
+        db.close();
+        opened = false;
+      }
     },
 
     updateuserlogged(db, nickname) { /* This method is to update the user that is actually logged. It will update the nickname. */
@@ -214,7 +233,13 @@ const store2 = Pinia.defineStore('store2', {
 
       req.onerror = function (e) {
         console.log("Error updating the user");
-      };   
+      }; 
+      
+      tx.oncomplete = function() {
+        console.log("Tx completed");
+        db.close();
+        opened = false;
+      }
     },
   }
 });
