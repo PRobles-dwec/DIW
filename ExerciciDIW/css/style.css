@@ -1,33 +1,70 @@
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
-#form {
+body {
+    height: 100%;
+    width: 100%;
+    background-color: antiquewhite;
+}
+
+#message {
+    background-color: #77DD77;
     margin: 10px;
+    margin-left: 30px;
+}
+#form {
+    margin: auto;
     text-align: center;
     border: 2px solid black; 
     display: none;  
+    width: fit-content;
+    border-radius: 20px;
+    margin-top: 30px;
+    background-color: #4860AE;
+    font-size: 18px;
+    box-shadow: 5px 5px rgb(138, 133, 133);
 }
 
-input {
+#insideform {
+    text-align: center;
+    font-size: 20px;
+    padding: 0.9em;
+    color: white;
+}
+label {
+    color: white;
     margin: 10px;
 }
-
+input {
+    margin-top: 20px;
+}
+.opacity {
+    opacity: 0.6;
+}
+#textTitle{
+    color: white;
+}
 #loginForm {
     padding: 10px;
-    margin: 10px;
+    background-color: transparent;
+    border-radius: 10px;  
+    margin-top: 10px;  
+    color: white;
+    font-size: 18px;
+}
+label {
+    margin: 5px;
+}
+#loginForm:hover {
+    cursor: pointer; 
 }
 
 #title {
-    text-align: center;
     display: inline-block;
-}
-
-header h1 {
-    *padding: 10px;
 }
 
 footer {
@@ -37,16 +74,37 @@ footer {
     background-color: #4860AE;
     padding: 30px;
     font-size: 20px;
+    color: white;
 }
 
 #errorEmail {
-    color: red;
+    color: rgb(145, 6, 6);
     display: none;
+    font-size: 17px;
+    margin-top: 20px;
+}
+
+legend {
+    font-size: 22px;
+    font-family: sans-serif;
 }
 
 #errorPassword {
-    color: red;
+    color: rgb(145, 6, 6);
     display: none;
+    font-size: 17px;
+    margin-top: 20px;
+}
+
+#close {
+    position: relative;
+    right: -100px;
+    padding: 5px;
+    background-color: #92B4F4;
+}
+
+#close:hover {
+    cursor: pointer;
 }
 
 body {
@@ -63,13 +121,13 @@ main {
     padding: 10px;
     position: absolute;
     right: 20px;
+    background-color: transparent;
+    font-size: 18px;
+    color: white;
 }
 
-#cerrarSesion {
-    margin-right: 10px;
-    border-radius: 10px;
-    padding: 10px;
-    display: none;
+#login:hover {
+    cursor: pointer;
 }
 
 #loremIpsum {

@@ -1,13 +1,34 @@
 $("#login").click(function(){
-    $("#loremIpsum").css("display", "none");    
-    $("#form").css("display", "block");
-    $("#title").text("Login Page");
+   // $("#loremIpsum").css("display", "none");   
+
+    setTimeout(function(){
+        $("#form").fadeIn("slow");
+        var formWidth = ($("#form").width());
+        var formHeight = ($("#form").height());
+
+        var docWidth = ($(document).width());
+        var docHeight = ($(document).height());
+
+        var calcWidth = ((docWidth - formWidth) / 2);
+        console.log(calcWidth);
+        var calHeight = ((docHeight - 2*formHeight) / 2);
+
+        $("#form").css({"left": calcWidth, "top": calHeight, "position": "absolute"});        
+    }, 50);
+
     $("#email").val("");
-    $("#password").val("");    
+    $("#password").val("");  
+    $("#minimize").hide();  
+    $("#errorEmail").hide();
+    $("#errorPassword").hide();
+    $("#message").hide();   
+    $("#loremIpsum").addClass("opacity");
+    $("footer").addClass("opacity");
+    $("header").addClass("opacity");
 });
 
 $("#loginForm").click(function(){
-    console.log("Recogiendo usuario.");
+    console.log("Recogiendo usuario.");    
     let email = $("#email").val();
     $("#form").css("display", "none");
     if($("#email").val() == ""){
@@ -30,19 +51,36 @@ $("#loginForm").click(function(){
     }
 
     if($("#password").val() != "" && $("#email").val() != ""){
-        $("#form").css("display", "none");
+        setTimeout(function(){
+            $("#form").fadeOut();
+        }, 50);
         $("#errorPassword").css("display", "none");
         $("#errorEmail").css("display", "none");
         $("#message").text("Has iniciado sesión correctamente: " + email);
-        $("#cerrarSesion").css("display", "block");
-        $("#login").css("display", "none");
-        $("#title").text("Home");
-        $("#loremIpsum").css("display", "block");  
-    }   
+        $("#login").show();
+        $("#loremIpsum").show();  
+        setTimeout(function(){
+            $("#message").fadeIn();
+        }, 200);
+
+        setTimeout(function(){
+            $("#message").fadeOut();
+        }, 2000);
+        
+        $("#message").css({"width": "fit-content", "fontSize": "18px"});
+        $("#loremIpsum").removeClass("opacity");
+        $("footer").removeClass("opacity");
+        $("header").removeClass("opacity");
+    }       
 });
 
-$("#cerrarSesion").click(function (){
-    $("#message").css("display", "none");
-    $("#login").css("display", "block");
-    $("#cerrarSesion").css("display", "none");
+$("#close").click(function(){
+    $("#loremIpsum").css("opacity", "0.9");    
+    setTimeout(function(){
+        $("#form").hide();                
+    }, 100);      
+
+    $("#loremIpsum").removeClass("opacity");
+    $("footer").removeClass("opacity");
+    $("header").removeClass("opacity");      
 });
