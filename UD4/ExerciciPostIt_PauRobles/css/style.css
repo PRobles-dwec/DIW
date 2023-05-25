@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header {
+    background-color: cornflowerblue;
+    padding: 20px;
+}
+button {
+    font-size: 20px;
+}
+.minimizar {
+    padding: 5px;
+}
+#crearNaranja {
+    background-color: orange;
+    padding: 10px;
+}
+#crearAzul {
+    background-color: rgb(36, 90, 191);
+    padding: 10px;
+}
+
+.postit {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    margin: 10px;
+    z-index: 1;
+}
+.naranja {
+    background-color: orange;
+    margin-top: 10px;
+}
+
+.azul {
+    background-color: rgb(25, 25, 170);
+    margin-top: 10px;
+}
+
+.contenedor {
+    width: 300px;
+    height: 400px;
+    position: relative;    
+    float: right;
+    margin: 10px;    
+}
+#contenedorNaranja {
+    background-color: rgb(198, 134, 15);
+}
+
+#contenedorAzul {
+    background-color: rgb(15, 152, 198);
+}
+
+#cerrar, #maximizar {
+    position: relative;
+    display: inline-block;
+    padding: 5px;
+}

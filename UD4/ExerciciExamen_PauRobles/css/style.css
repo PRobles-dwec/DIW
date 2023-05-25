@@ -1,0 +1,23 @@
+#lista1, #lista2 {
+    display: inline-block;
+    list-style: none;
+    margin-left: 3px;
+}
+
+#item1, #item2, #item3 {
+    background-color: rgb(1, 128, 2);
+    margin: 5px;
+    padding: 10px;
+    width: 200px;    
+    font-size: 20px;
+    border-radius: 6px;
+}
+
+#itemA, #itemB, #itemC {
+    background-color: #02fe46;
+    margin: 5px;
+    padding: 10px;
+    width: 200px;    
+    font-size: 20px;
+    border-radius: 6px;
+}
